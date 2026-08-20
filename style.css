@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -70,6 +70,15 @@ button:hover {
     background: #2980b9;
 }
 
+#cancel-edit {
+    background: #95a5a6;
+    margin-top: 0.5rem;
+}
+
+#cancel-edit:hover {
+    background: #7f8c8d;
+}
+
 /* Summary */
 .summary {
     background: #fff;
@@ -77,7 +86,7 @@ button:hover {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .summary h2 {
@@ -91,13 +100,115 @@ button:hover {
     color: #e74c3c;
 }
 
-/* Filter */
-.filter {
-    margin-bottom: 1.5rem;
+/* Category summary */
+.category-summary {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
 }
 
-.filter label {
-    margin-right: 0.5rem;
+.category-summary h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+#category-totals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.category-item {
+    background: #ecf0f1;
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: center;
+}
+
+/* Chart container */
+.chart-container {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.chart-container h2 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+#expense-chart {
+    height: 150px;
+    position: relative;
+    background: #fdfdfd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.chart-bar {
+    position: absolute;
+    bottom: 0;
+    transition: height 0.3s ease;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.85rem;
+    padding: 0 2px;
+}
+
+.chart-bar-label {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    font-size: 0.75rem;
+    color: #555;
+}
+
+.chart-bar-value {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Filter & Search */
+.filter-search {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    align-items: end;
+}
+
+.filter-search > div {
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-search label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+.filter-search select,
+.filter-search input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
 }
 
 /* Transactions list */
@@ -131,10 +242,12 @@ button:hover {
 
 .transaction-info {
     flex: 1;
+    min-width: 0;
 }
 
 .transaction-name {
     font-weight: 600;
+    display: block;
 }
 
 .transaction-category {
@@ -143,22 +256,28 @@ button:hover {
     padding: 0.2rem 0.5rem;
     border-radius: 3px;
     font-size: 0.85rem;
-    margin-left: 0.5rem;
+    margin: 0.25rem 0;
 }
 
 .transaction-amount {
     font-weight: bold;
     color: #e74c3c;
+    display: block;
 }
 
 .transaction-date {
     font-size: 0.85rem;
     color: #7f8c8d;
+    display: block;
 }
 
+.transaction-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.edit-btn,
 .delete-btn {
-    background: #e74c3c;
-    color: #fff;
     border: none;
     padding: 0.3rem 0.6rem;
     border-radius: 3px;
@@ -166,14 +285,31 @@ button:hover {
     font-size: 0.85rem;
 }
 
+.edit-btn {
+    background: #2ecc71;
+    color: #fff;
+}
+
+.edit-btn:hover {
+    background: #27ae60;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: #fff;
+}
+
 .delete-btn:hover {
     background: #c0392b;
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .container {
         margin: 1rem auto;
+    }
+    .filter-search {
+        flex-direction: column;
     }
     .transaction-item {
         flex-direction: column;
@@ -183,7 +319,10 @@ button:hover {
     .transaction-info {
         width: 100%;
     }
-    .delete-btn {
+    .transaction-actions {
         align-self: flex-end;
+    }
+    #category-totals {
+        justify-content: flex-start;
     }
 }

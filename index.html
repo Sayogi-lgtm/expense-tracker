@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
+    <title>Expense Tracker V2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Expense Tracker</h1>
         <form id="transaction-form">
+            <input type="hidden" id="edit-index" value="-1">
             <div class="form-group">
                 <label for="transaction-name">Nama Transaksi</label>
                 <input type="text" id="transaction-name" required>
@@ -35,6 +36,7 @@
                 <input type="date" id="transaction-date" required>
             </div>
             <button type="submit">Tambah Transaksi</button>
+            <button type="button" id="cancel-edit" style="display:none;">Batal Edit</button>
         </form>
 
         <div class="summary">
@@ -42,17 +44,33 @@
             <p id="total-amount">Rp 0</p>
         </div>
 
-        <div class="filter">
-            <label for="filter-category">Filter Kategori:</label>
-            <select id="filter-category">
-                <option value="">Semua Kategori</option>
-                <option value="Makanan">Makanan</option>
-                <option value="Transportasi">Transportasi</option>
-                <option value="Hiburan">Hiburan</option>
-                <option value="Belanja">Belanja</option>
-                <option value="Tagihan">Tagihan</option>
-                <option value="Lainnya">Lainnya</option>
-            </select>
+        <div class="category-summary">
+            <h2>Total per Kategori</h2>
+            <div id="category-totals"></div>
+        </div>
+
+        <div class="chart-container">
+            <h2>Grafik Pengeluaran per Kategori</h2>
+            <div id="expense-chart"></div>
+        </div>
+
+        <div class="filter-search">
+            <div>
+                <label for="filter-category">Filter Kategori:</label>
+                <select id="filter-category">
+                    <option value="">Semua Kategori</option>
+                    <option value="Makanan">Makanan</option>
+                    <option value="Transportasi">Transportasi</option>
+                    <option value="Hiburan">Hiburan</option>
+                    <option value="Belanja">Belanja</option>
+                    <option value="Tagihan">Tagihan</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div>
+                <label for="search-transaction">Cari Transaksi:</label>
+                <input type="text" id="search-transaction" placeholder="Nama transaksi...">
+            </div>
         </div>
 
         <div class="transactions">
